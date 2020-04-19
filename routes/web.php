@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//EP.2
 Route::get("/home", function() {
     return "<h1>This is home page</h1>" ;
 });
@@ -78,3 +79,12 @@ Route::get( "/gallery/cat" , function(){
 	$cat = "http://www.onyxtruth.com/wp-content/uploads/2017/06/black-panther-movie-onyx-truth.jpg";    
     return view("test/cat", compact("cat") );
 });
+
+//EP.3
+Route::get("/myprofile/create","MyProfileController@create");
+Route::get("/myprofile/{id}/edit", "MyProfileController@edit");
+Route::get("/myprofile/{id}", "MyProfileController@show");
+
+Route::get( "/newgallery" , "MyProfileController@gallery" );
+Route::get( "/newgallery/ant" , "MyProfileController@ant" );
+Route::get( "/newgallery/bird" , "MyProfileController@bird" );
