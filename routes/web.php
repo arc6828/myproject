@@ -88,3 +88,26 @@ Route::get("/myprofile/{id}", "MyProfileController@show");
 Route::get( "/newgallery" , "MyProfileController@gallery" );
 Route::get( "/newgallery/ant" , "MyProfileController@ant" );
 Route::get( "/newgallery/bird" , "MyProfileController@bird" );
+
+//EP.4
+Route::get( "/coronavirus" , "MyProfileController@coronavirus" );
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get("/teacher" , function (){
+	return view("teacher/index");
+});
+
+Route::get("/student" , function (){
+	return view("student/index");
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
