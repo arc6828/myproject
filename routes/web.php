@@ -111,3 +111,7 @@ Route::get("/student" , function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//EP6
+Route::get('/covid19', 'Covid19Controller@index');
+Route::get('/covid19/{id}', 'Covid19Controller@show');
