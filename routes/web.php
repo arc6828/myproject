@@ -113,5 +113,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //EP6
+Route::resource('/covid19','Covid19Controller');
+
+/*
 Route::get('/covid19', 'Covid19Controller@index');
+Route::get("/covid19/create", "Covid19Controller@create");
+Route::post("/covid19", "Covid19Controller@store");
 Route::get('/covid19/{id}', 'Covid19Controller@show');
+Route::get("/covid19/{id}/edit", "Covid19Controller@edit");
+Route::patch("/covid19/{id}", "Covid19Controller@update");
+Route::delete("/covid19/{id}", "Covid19Controller@destroy");
+*/

@@ -30,7 +30,7 @@ class Covid19Controller extends Controller
         //$covid19s = Covid19::orderBy('date', 'desc')->paginate($perPage);
 
 
-        return view('covid19/index' , compact('covid19s') );
+        return view('covid19.index' , compact('covid19s') );
     }
 
     /**
@@ -40,7 +40,7 @@ class Covid19Controller extends Controller
      */
     public function create()
     {
-        //
+        return view('covid19.create');
     }
 
     /**
@@ -51,7 +51,24 @@ class Covid19Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestData = $request->all();
+
+        /*
+        $requestData = [
+            "date" => $request->input("date"),
+            "country" =>  $request->input("country"),
+            "total" =>  $request->input("total"),
+            "death" =>  $request->input("death"),
+            "active" =>  $request->input("active"),
+            "recovered" =>  $request->input("recovered"),
+            "total_in_1m" =>  $request->input("total_in_1m"),
+            "remark" =>  $request->input("remark"),
+        ];
+        */
+        
+        Covid19::create($requestData);
+
+        return redirect('covid19');
     }
 
     /**
@@ -75,7 +92,9 @@ class Covid19Controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $covid19 = Covid19::findOrFail($id);
+
+        return view('covid19.edit', compact('covid19'));
     }
 
     /**
@@ -87,7 +106,12 @@ class Covid19Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $requestData = $request->all();
+        
+        $covid19 = Covid19::findOrFail($id);
+        $covid19->update($requestData);
+
+        return redirect('covid19');
     }
 
     /**
@@ -98,6 +122,8 @@ class Covid19Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        Covid19::destroy($id);
+
+        return redirect('covid19');
     }
 }
