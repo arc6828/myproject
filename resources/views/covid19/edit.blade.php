@@ -1,4 +1,4 @@
-@extends('bootstrap-theme')
+@extends('layouts.app')
 
 @section('content')
 

@@ -1,4 +1,4 @@
-@extends('bootstrap-theme')
+@extends('layouts.app')
 
 @section('content')
 <h1>Covid19 #{{ $covid19->id }}</h1>

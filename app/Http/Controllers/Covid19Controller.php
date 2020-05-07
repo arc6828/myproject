@@ -23,6 +23,7 @@ class Covid19Controller extends Controller
                 ->orWhere('active', 'LIKE', "%$search%")
                 ->orWhere('death', 'LIKE', "%$search%")
                 ->orWhere('recovered', 'LIKE', "%$search%")
+                //->orWhere('date', 'LIKE', "%$search%")
                 ->orderBy('date', 'desc')->paginate($perPage);
         } else {//กรณีไม่มีข้อมูล search จะทำงานเหมือนเดิม
             $covid19s = Covid19::orderBy('date', 'desc')->paginate($perPage);

@@ -1,4 +1,4 @@
-@extends('bootstrap-theme')
+@extends('layouts.app')
 
 @section('content')
 <h1>Create New Covid Record</h1>
