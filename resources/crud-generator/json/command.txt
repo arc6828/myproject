@@ -1,1 +1,10 @@
 php artisan crud:generate Staff --fields_from_file="resources/crud-generator/json/staff.json"
+
+php artisan crud:generate Post --fields_from_file="resources/crud-generator/json/post.json"
+
+php artisan crud:generate Vehicle --fields_from_file="resources/crud-generator/json/vehicle.json"
+
+php artisan crud:generate Profile --fields_from_file="resources/crud-generator/json/profile.json"
+
+php artisan crud:generate User --fields_from_file="resources/crud-generator/json/user.json"
+

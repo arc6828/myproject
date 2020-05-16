@@ -99,9 +99,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get("/teacher" , function (){
-	return view("teacher/index");
+Route::middleware(['auth','role:admin,teacher'])->group(function () {    
+    Route::resource('covid19', 'Covid19Controller')->only(['index', 'show' ]);
 });
+Route::middleware(['auth','role:admin'])->group(function () {    
+    Route::resource('covid19', 'Covid19Controller')->except(['index', 'show' ]);
+});
+
+Route::get("/teacher" , function (){
+    return view("teacher/index");
+});
+
 
 Route::get("/student" , function (){
 	return view("student/index");
@@ -113,7 +121,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //EP6
-Route::resource('/covid19','Covid19Controller');
 
 /*
 Route::get('/covid19', 'Covid19Controller@index');
@@ -126,3 +133,6 @@ Route::delete("/covid19/{id}", "Covid19Controller@destroy");
 */
 Route::resource('post', 'PostController');
 Route::resource('staff', 'StaffController');
+Route::resource('vehicle', 'VehicleController');
+Route::resource('profile', 'ProfileController');
+Route::resource('user', 'UserController');
