@@ -30,7 +30,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>No</th><th>Type</th><th>Issue Date</th><th>Expire Date</th><th>Name</th><th>Birth Date</th><th>Id No</th><th>User Id</th><th>Actions</th>
+                                        <th>#</th><th>No</th><th>Type</th><th>Issue Date</th><th>Expire Date</th><th>Name</th><th>Birth Date</th><th>Id No</th><th>User Id</th>
+                                        <th>User Email</th><th>User Role</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +40,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->no }}</td><td>{{ $item->type }}</td><td>{{ $item->issue_date }}</td><td>{{ $item->expire_date }}</td><td>{{ $item->name }}</td><td>{{ $item->birth_date }}</td><td>{{ $item->id_no }}</td><td>{{ $item->user_id }}</td>
+                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->user->role }}</td>
+
                                         <td>
                                             <a href="{{ url('/profile/' . $item->id) }}" title="View Profile"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/profile/' . $item->id . '/edit') }}" title="Edit Profile"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

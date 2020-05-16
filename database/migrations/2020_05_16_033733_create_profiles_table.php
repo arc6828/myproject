@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration
             $table->date('expire_date')->nullable();
             $table->string('name')->nullable();
             $table->date('birth_date')->nullable();
-            $table->date('id_no')->nullable();
+            $table->string('id_no')->nullable();
             $table->integer('user_id')->nullable();
             });
     }

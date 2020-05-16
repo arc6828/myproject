@@ -27,5 +27,8 @@ class Profile extends Model
      */
     protected $fillable = ['no', 'type', 'issue_date', 'expire_date', 'name', 'birth_date', 'id_no', 'user_id'];
 
-    
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+ 
 }

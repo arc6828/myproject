@@ -30,7 +30,7 @@
 </div>
 <div class="form-group {{ $errors->has('id_no') ? 'has-error' : ''}}">
     <label for="id_no" class="control-label">{{ 'Id No' }}</label>
-    <input class="form-control" name="id_no" type="date" id="id_no" value="{{ isset($profile->id_no) ? $profile->id_no : ''}}" >
+    <input class="form-control" name="id_no" type="text" id="id_no" value="{{ isset($profile->id_no) ? $profile->id_no : ''}}" >
     {!! $errors->first('id_no', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">

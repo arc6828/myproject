@@ -30,7 +30,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Email</th><th>Email Verified At</th><th>Password</th><th>Remember Token</th><th>Role</th><th>Actions</th>
+                                        <th>#</th><th>Name</th><th>Email</th><th>Email Verified At</th><th>Password</th><th>Remember Token</th><th>Role</th>                                        
+                                        <th>Profile No</th>
+                                        <th>Profile Type</th>
+                                        <th>Actions</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +42,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->email }}</td><td>{{ $item->email_verified_at }}</td><td>{{ $item->password }}</td><td>{{ $item->remember_token }}</td><td>{{ $item->role }}</td>
+                                        <td>{{ $item->profile->no }}</td>
+                                        <td>{{ $item->profile->type }}</td>
                                         <td>
                                             <a href="{{ url('/user/' . $item->id) }}" title="View User"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/user/' . $item->id . '/edit') }}" title="Edit User"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
