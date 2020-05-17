@@ -131,8 +131,14 @@ Route::get("/covid19/{id}/edit", "Covid19Controller@edit");
 Route::patch("/covid19/{id}", "Covid19Controller@update");
 Route::delete("/covid19/{id}", "Covid19Controller@destroy");
 */
+
+
+Route::get('/vehicle/pdf', 'VehicleController@pdf_index');
+
 Route::resource('post', 'PostController');
 Route::resource('staff', 'StaffController');
 Route::resource('vehicle', 'VehicleController');
 Route::resource('profile', 'ProfileController');
 Route::resource('user', 'UserController');
+
+Route::resource('book', 'BookController');

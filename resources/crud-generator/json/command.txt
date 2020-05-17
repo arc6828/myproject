@@ -8,3 +8,6 @@ php artisan crud:generate Profile --fields_from_file="resources/crud-generator/j
 
 php artisan crud:generate User --fields_from_file="resources/crud-generator/json/user.json"
 
+php artisan crud:generate Book --fields_from_file="resources/crud-generator/json/book.json"
+
+

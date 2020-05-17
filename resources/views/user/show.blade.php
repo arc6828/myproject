@@ -30,10 +30,11 @@
                                     <tr><th> Name </th><td> {{ $user->name }} </td></tr><tr><th> Email </th><td> {{ $user->email }} </td></tr><tr><th> Email Verified At </th><td> {{ $user->email_verified_at }} </td></tr><tr><th> Password </th><td> {{ $user->password }} </td></tr><tr><th> Remember Token </th><td> {{ $user->remember_token }} </td></tr><tr><th> Role </th><td> {{ $user->role }} </td></tr>
                                 </tbody>
                             </table>
-                            <hr>
 
+
+                            <hr>
                             @php
-                            $vehicle = $user->vehicles;
+                                $vehicle = $user->vehicles;
                             @endphp
                             <h2 class="pt-4">{{ $user->name }}'s Vehicles</h2>
                             <table class="table">

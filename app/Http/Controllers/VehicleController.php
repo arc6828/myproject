@@ -7,9 +7,31 @@ use App\Http\Requests;
 
 use App\Vehicle;
 use Illuminate\Http\Request;
+use PDF;
+
+
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class VehicleController extends Controller
 {
+    public function pdf_index() {
+        $data = [ ];
+        $pdf = PDF::loadView('test_pdf',$data);
+        return $pdf->stream('test.pdf'); //แบบนี้จะ stream มา preview
+        //return $pdf->download('test.pdf'); //แบบนี้จะดาวโหลดเลย
+    }
+
+    public function testmail($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+        //$email = "chavalit.kow@gmail.com";
+        $email = $vehicle->user->email;
+        //หรือ ใช้ relationship เรียกจากตาราง user
+        //$email = $article->user->email; 
+         
+        Mail::to($email)->send(new TestMail($vehicle));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -105,6 +127,9 @@ class VehicleController extends Controller
         
         $vehicle = Vehicle::findOrFail($id);
         $vehicle->update($requestData);
+        
+        //ส่งเมล์ไปหาเจ้าของรถเมื่อมีการอัพเดทข้อมูล
+        $this->testmail($id);
 
         return redirect('vehicle')->with('flash_message', 'Vehicle updated!');
     }
