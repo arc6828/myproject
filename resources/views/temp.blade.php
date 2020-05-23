@@ -1,18 +1,9 @@
-<div class="card">
-    ...
-</div>
-
-@php
-    $orderproduct = $order->order_products;
-@endphp
-
-<div class="table-responsive">
-    <table class="table">
+@foreach($payment as $item)
+    <tr>
         ...
-        @foreach($orderproduct as $item)
-            ...
-        @endforeach
-        </tbody>
-    </table>
-    <div class="pagination-wrapper"> {!! $orderproduct->appends(['search' => Request::get('search')])->render() !!} </div>
-</div>
+        <td>{{ $item->user_id }} {{ $item->user->name }}</td>
+        <td>{{ $item->order_id }}</td>
+        <td>{{ $item->slip }}  <img src="{{ url('storage/'.$item->slip )}}" width="100" /> </td>
+        ...
+    </tr>
+@endforeach
