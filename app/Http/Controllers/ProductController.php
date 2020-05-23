@@ -56,7 +56,7 @@ class ProductController extends Controller
     {
         
         $requestData = $request->all();
-                if ($request->hasFile('photo')) {
+        if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')
                 ->store('uploads', 'public');
         }

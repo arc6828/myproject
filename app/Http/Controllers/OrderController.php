@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\OrderProduct;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -78,6 +79,13 @@ class OrderController extends Controller
         OrderProduct::whereNull('order_id')
             ->where('user_id', Auth::id() )
             ->update(['order_id'=> $order->id]);
+
+        //ปรับลดสินค้าในสต๊อก
+        $order_products = $order->order_products;
+        foreach($order_products as $item)
+        {
+            Product::where('id',$item->product_id)->decrement('quantity', $item->quantity);
+        }
 
         return redirect('order')->with('flash_message', 'Order added!');
     }

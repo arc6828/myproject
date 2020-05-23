@@ -14,7 +14,7 @@
         },
         {
             "name": "slip",
-            "type": "float"
+            "type": "file"
         }
     ]
 }

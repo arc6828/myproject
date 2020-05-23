@@ -17,8 +17,8 @@ class CreatePaymentsTable extends Migration
             $table->timestamps();
             $table->float('total')->nullable();
             $table->integer('user_id')->nullable();
-            $table->integer('order_id')->nullable();
-            $table->float('slip')->nullable();
+            $table->integer('order_id')->nullable();            
+            $table->string('slip')->nullable();
             });
     }
 
