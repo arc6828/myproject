@@ -142,3 +142,11 @@ Route::resource('profile', 'ProfileController');
 Route::resource('user', 'UserController');
 
 Route::resource('book', 'BookController');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('order-product', 'OrderProductController');
+    Route::resource('order', 'OrderController');
+    Route::resource('payment', 'PaymentController');
+});
+
+Route::resource('product', 'ProductController');

@@ -11,3 +11,10 @@ php artisan crud:generate User --fields_from_file="resources/crud-generator/json
 php artisan crud:generate Book --fields_from_file="resources/crud-generator/json/book.json"
 
 
+
+php artisan crud:generate OrderProduct --fields_from_file="resources/crud-generator/json/order_product.json"
+php artisan crud:generate Order --fields_from_file="resources/crud-generator/json/order.json"
+php artisan crud:generate Payment --fields_from_file="resources/crud-generator/json/payment.json"
+php artisan crud:generate Product --fields_from_file="resources/crud-generator/json/product.json"
+
+
