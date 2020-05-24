@@ -37,6 +37,8 @@
                             </table>
                         </div>
 
+                        
+
                         <form method="POST" action="{{ url('/order-product') }}" accept-charset="UTF-8" class="form-horizontal text-center" enctype="multipart/form-data">
                             {{ csrf_field() }}           
                                 

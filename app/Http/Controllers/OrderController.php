@@ -21,23 +21,17 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
-            $order = Order::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('remark', 'LIKE', "%$keyword%")
-                ->orWhere('total', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
-                ->orWhere('checking_at', 'LIKE', "%$keyword%")
-                ->orWhere('paid_at', 'LIKE', "%$keyword%")
-                ->orWhere('cancelled_at', 'LIKE', "%$keyword%")
-                ->orWhere('completed_at', 'LIKE', "%$keyword%")
-                ->orWhere('tracking', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $order = Order::latest()->paginate($perPage);
-        }
+        switch(Auth::user()->role)
+        {
+            case "admin" : 
+                $order = Order::latest()->paginate($perPage);
+                break;
+            default : 
+                //means guest
+                $order = Order::where('user_id',Auth::id() )->latest()->paginate($perPage);            
+        }        
 
         return view('order.index', compact('order'));
     }
@@ -139,6 +133,15 @@ class OrderController extends Controller
                 break;
             case "completed" : 
                 $requestData['completed_at'] = date("Y-m-d H:i:s");
+                break;
+            case "cancelled" :                 
+                $requestData['cancelled_at'] = date("Y-m-d H:i:s");
+                //ปรับเพื่มสินค้าในสต๊อก
+                $order_products = $order->order_products;
+                foreach($order_products as $item)
+                {
+                    Product::where('id',$item->product_id)->increment('quantity', $item->quantity);
+                }
                 break;
         }
         $order->update($requestData);

@@ -98,9 +98,14 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        $payment = Payment::findOrFail($id);
 
-        return view('payment.edit', compact('payment'));
+        
+        $payment = Payment::findOrFail($id);
+        
+        //query order มาจาก relationship
+        $order = $payment->order;
+
+        return view('payment.edit', compact('payment','order'));
     }
 
     /**
