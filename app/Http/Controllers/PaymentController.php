@@ -66,7 +66,7 @@ class PaymentController extends Controller
         }
         Payment::create($requestData);
 
-        //update order status เป็น cheking
+        //update order status เป็น checking
         Order::where('id',$requestData['order_id'])
             ->update([
                 'status'=>'checking',
