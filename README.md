@@ -17,7 +17,7 @@ or if you use window
 ```
 copy .env.example .env
 ```
-### setting your database in .env file .. then, generate key 
+### Generate key in .env
 ```
 php artisan key:generate
 ```
