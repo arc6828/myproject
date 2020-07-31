@@ -2,7 +2,7 @@
 
 This project is about website for conference making by Laravel 5.8.29
 
-## Getting Started
+## PART 1 : Getting Started
 
 ### Installation / Reinstall some plugins
 ```
@@ -22,14 +22,14 @@ copy .env.example .env
 php artisan key:generate
 ```
 
-## Database Part
+## PART 2 : Database Part
 
 ### Migrate Database Schema
 ```
 php artisan migrate
 ```
 
-## Permission
+## PART 3 : Permission
 
 ### File Permission (Linux / Mac only)
 ```
