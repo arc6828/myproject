@@ -8,7 +8,7 @@ This project is about website for conference making by Laravel 5.8.29
 ```
 composer install
 ```
-### Seting .env
+### Setting .env
 if you use linux / mac
 ```
 cp .env.example .env
