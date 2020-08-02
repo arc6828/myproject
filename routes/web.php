@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/table', function () {
+    return view('table');
+});
+
 //EP.2
 Route::get("/home", function() {
     return "<h1>This is home page</h1>" ;
