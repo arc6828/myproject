@@ -102,14 +102,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('covid19', 'Covid19Controller');
+/*
 Route::middleware(['auth','role:admin,teacher'])->group(function () {    
     Route::resource('covid19', 'Covid19Controller')->only(['index', 'show' ]);
 });
 Route::middleware(['auth','role:admin'])->group(function () {    
     Route::resource('covid19', 'Covid19Controller')->except(['index', 'show' ]);
 });
-
+*/
 Route::get("/teacher" , function (){
     return view("teacher/index");
 });
