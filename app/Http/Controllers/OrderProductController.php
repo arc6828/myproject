@@ -127,8 +127,10 @@ class OrderProductController extends Controller
     {      
         $date = $request->get('date');
         //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
-        $orderproduct = OrderProduct::select(DB::raw('*, SUM(price) as sum_price, SUM(quantity) as sum_quantity, SUM(total) as sum_total'))
-            ->whereDate('created_at',$date)
+        $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->select(DB::raw('order_products.*, SUM(order_products.price) as sum_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+            ->whereDate('orders.completed_at',$date)
+            ->where('orders.status','completed')
             ->groupByRaw('product_id')
             ->get();       
         return view('order-product.daily', compact('orderproduct'));
@@ -139,9 +141,11 @@ class OrderProductController extends Controller
         $month = $request->get('month');
         $year = $request->get('year');
         //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
-        $orderproduct = OrderProduct::select(DB::raw('*, SUM(price) as sum_price, SUM(quantity) as sum_quantity, SUM(total) as sum_total'))
-            ->whereMonth('created_at',$month)
-            ->whereYear('created_at',$year)
+        $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->select(DB::raw('order_products.*, SUM(order_products.price) as sum_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+            ->whereMonth('orders.completed_at',$month)
+            ->whereYear('orders.completed_at',$year)
+            ->where('orders.status','completed')
             ->groupByRaw('product_id')
             ->get();       
         return view('order-product.monthly', compact('orderproduct'));
@@ -151,8 +155,10 @@ class OrderProductController extends Controller
     {      
         $year = $request->get('year');
         //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
-        $orderproduct = OrderProduct::select(DB::raw('*, SUM(price) as sum_price, SUM(quantity) as sum_quantity, SUM(total) as sum_total'))
-            ->whereYear('created_at',$year)
+        $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
+            ->select(DB::raw('order_products.*, SUM(order_products.price) as sum_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+            ->whereYear('orders.completed_at',$year)
+            ->where('orders.status','completed')
             ->groupByRaw('product_id')
             ->get();       
         return view('order-product.yearly', compact('orderproduct'));
