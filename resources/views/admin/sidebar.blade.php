@@ -21,6 +21,11 @@
                         <i class="fa fa-box"></i> คำสั่งซื้อของฉัน
                     </a>
                 </li>
+                <li role="presentation">
+                    <a href="{{ url('/report') }}">
+                        <i class="fa fa-file"></i> รายงาน
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

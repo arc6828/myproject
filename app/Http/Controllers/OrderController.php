@@ -162,4 +162,6 @@ class OrderController extends Controller
 
         return redirect('order')->with('flash_message', 'Order deleted!');
     }
+
+    
 }

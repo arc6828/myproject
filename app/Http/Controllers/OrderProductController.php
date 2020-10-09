@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\OrderProduct;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class OrderProductController extends Controller
@@ -121,4 +122,39 @@ class OrderProductController extends Controller
 
         return redirect('order-product')->with('flash_message', 'OrderProduct deleted!');
     }
+
+    public function dailyreport(Request $request)
+    {      
+        $date = $request->get('date');
+        //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
+        $orderproduct = OrderProduct::select(DB::raw('*, SUM(price) as sum_price, SUM(quantity) as sum_quantity, SUM(total) as sum_total'))
+            ->whereDate('created_at',$date)
+            ->groupByRaw('product_id')
+            ->get();       
+        return view('order-product.daily', compact('orderproduct'));
+    } 
+
+    public function monthlyreport(Request $request)
+    {      
+        $month = $request->get('month');
+        $year = $request->get('year');
+        //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
+        $orderproduct = OrderProduct::select(DB::raw('*, SUM(price) as sum_price, SUM(quantity) as sum_quantity, SUM(total) as sum_total'))
+            ->whereMonth('created_at',$month)
+            ->whereYear('created_at',$year)
+            ->groupByRaw('product_id')
+            ->get();       
+        return view('order-product.monthly', compact('orderproduct'));
+    } 
+
+    public function yearlyreport(Request $request)
+    {      
+        $year = $request->get('year');
+        //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
+        $orderproduct = OrderProduct::select(DB::raw('*, SUM(price) as sum_price, SUM(quantity) as sum_quantity, SUM(total) as sum_total'))
+            ->whereYear('created_at',$year)
+            ->groupByRaw('product_id')
+            ->get();       
+        return view('order-product.yearly', compact('orderproduct'));
+    } 
 }

@@ -149,9 +149,17 @@ Route::resource('user', 'UserController');
 Route::resource('book', 'BookController');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('report', function(){
+        return view('report/index');
+    });
+    Route::get('order-product/dailyreport', 'OrderProductController@dailyreport');
+    Route::get('order-product/monthlyreport', 'OrderProductController@monthlyreport');
+    Route::get('order-product/yearlyreport', 'OrderProductController@yearlyreport');
+    //
     Route::resource('order-product', 'OrderProductController');
     Route::resource('order', 'OrderController');
     Route::resource('payment', 'PaymentController');
+    
 });
 
 Route::resource('product', 'ProductController');
