@@ -123,44 +123,45 @@ class OrderProductController extends Controller
         return redirect('order-product')->with('flash_message', 'OrderProduct deleted!');
     }
 
-    public function dailyreport(Request $request)
+    public function reportdaily(Request $request)
     {      
         $date = $request->get('date');
-        //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
+        //SELECT *, orders.completed_at, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
         $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
-            ->select(DB::raw('order_products.*, SUM(order_products.price) as sum_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+            ->select(DB::raw('order_products.*, orders.completed_at, AVG(order_products.price) as avg_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
             ->whereDate('orders.completed_at',$date)
             ->where('orders.status','completed')
             ->groupByRaw('product_id')
             ->get();       
-        return view('order-product.daily', compact('orderproduct'));
+        return view('order-product.report-daily', compact('orderproduct'));
     } 
 
-    public function monthlyreport(Request $request)
+    public function reportmonthly(Request $request)
     {      
         $month = $request->get('month');
         $year = $request->get('year');
+        //SELECT order_products.* FROM `order_products` INNER JOIN orders ON order_products.order_id = orders.id WHERE orders.completed_at = DATE($date) AND where orders.status = 'completed'
         //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
         $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
-            ->select(DB::raw('order_products.*, SUM(order_products.price) as sum_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+            ->select(DB::raw('order_products.*, orders.completed_at, AVG(order_products.price) as avg_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
             ->whereMonth('orders.completed_at',$month)
             ->whereYear('orders.completed_at',$year)
             ->where('orders.status','completed')
             ->groupByRaw('product_id')
             ->get();       
-        return view('order-product.monthly', compact('orderproduct'));
+        return view('order-product.report-monthly', compact('orderproduct'));
     } 
 
-    public function yearlyreport(Request $request)
+    public function reportyearly(Request $request)
     {      
         $year = $request->get('year');
         //SELECT *, SUM(price) as sum_price, SUM(quantity) as sum_quantity FROM `order_products` GROUP BY product_id
         $orderproduct = OrderProduct::join('orders', 'order_products.order_id', '=', 'orders.id')
-            ->select(DB::raw('order_products.*, SUM(order_products.price) as sum_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
+            ->select(DB::raw('order_products.*, orders.completed_at, AVG(order_products.price) as avg_price, SUM(order_products.quantity) as sum_quantity, SUM(order_products.total) as sum_total'))
             ->whereYear('orders.completed_at',$year)
             ->where('orders.status','completed')
             ->groupByRaw('product_id')
             ->get();       
-        return view('order-product.yearly', compact('orderproduct'));
+        return view('order-product.report-yearly', compact('orderproduct'));
     } 
 }

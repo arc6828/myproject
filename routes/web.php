@@ -149,13 +149,12 @@ Route::resource('user', 'UserController');
 Route::resource('book', 'BookController');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('report', function(){
-        return view('report/index');
+    Route::middleware(['role:admin'])->group(function () {    
+        Route::get('order-product/reportdaily', 'OrderProductController@reportdaily');
+        Route::get('order-product/reportmonthly', 'OrderProductController@reportmonthly');
+        Route::get('order-product/reportyearly', 'OrderProductController@reportyearly');
     });
-    Route::get('order-product/dailyreport', 'OrderProductController@dailyreport');
-    Route::get('order-product/monthlyreport', 'OrderProductController@monthlyreport');
-    Route::get('order-product/yearlyreport', 'OrderProductController@yearlyreport');
-    //
+    
     Route::resource('order-product', 'OrderProductController');
     Route::resource('order', 'OrderController');
     Route::resource('payment', 'PaymentController');
