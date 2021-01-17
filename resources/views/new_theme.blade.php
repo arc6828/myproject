@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>@yield("title")</title>
+    <title>Student</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/pricing/">
 
@@ -35,7 +36,7 @@
   </head>
   <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h5 class="my-0 mr-md-auto font-weight-normal">LOGO IMage</h5>
+      <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="#">Features</a>
         <a class="p-2 text-dark" href="#">Enterprise</a>
@@ -44,20 +45,15 @@
       </nav>
       <a class="btn btn-outline-primary" href="#">Sign up</a>
     </div>
-    
-    
+
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">@yield("title")</h1>
+      <h1 class="display-4">Student</h1>
       <p class="lead d-none">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
     </div>
 
     <div class="container">
-      
       <div class="text-center">
-        <!-- START OF CONTENT -->
-        @yield("content")
-        <!-- END OF CONTENT -->
-
+        
       </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -98,7 +94,5 @@
         </div>
       </footer>
     </div>
-    
-    
   </body>
 </html>
